@@ -1,0 +1,58 @@
+<!--Seung Hoon Lee - A01021720
+    Ejercicio 2 Comercio -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejercicio 4 Tortas</title>
+  <meta charset="utf-8">
+  <script src="./assert.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assert.css">
+</head>
+<body> 
+	<script type="text/javascript">
+    var profit = 0;
+    var dozensBought = 0;
+    var randomSold = 0;
+    var dozensSold = 0;
+    var tempProfit = 0;
+    var bestSold ="";
+
+    for(j = 0; j < 6; j++) {
+        dozensBought += 1;
+            for (i = 0; i < 5000; i++) { //Iteramos 5000 veces
+                var randomSold = Math.random() + .01; //Random apra decidir la probabilidad
+                var dozensSold = 0; //Dozens vendidas
+
+                //Probabilidades de randomSold
+                if (randomSold > 0.00 && randomSold <= 0.05) dozensSold = 1;
+                if (randomSold > 0.05 && randomSold <= 0.15) dozensSold = 2;
+                if (randomSold > 0.15 && randomSold <= 0.35) {dozensSold = 3;}
+                if (randomSold > 0.35 && randomSold <= 0.75) {dozensSold = 4;}
+                if (randomSold > 0.75 && randomSold <= 0.95) {dozensSold = 5;}
+                if (randomSold > 0.95 && randomSold <= 1.00) {dozensSold = 6;}
+
+                if (dozensBought == dozensSold) {
+                    tempProfit += (dozensSold * 12 * 4);  
+                } else if (dozensBought > dozensSold) {
+                    tempProfit += (dozensSold * 12 * 4);
+                    tempProfit -= (Math.ceil((dozensBought - dozensSold)/2) * 1.50 * 12);
+                } else if (dozensBought < dozensSold) {
+                    tempProfit += (dozensBought * 12 * 4);
+                    tempProfit -= ((dozensSold-dozensBought) * 12 * 5);
+                }
+            }
+        if (tempProfit > profit) {  
+            profit = tempProfit;
+            bestSold = "The best dozens to buy at every day is: " + dozensBought + " dozen tortas.";
+        }
+        console.log(tempProfit);
+        tempProfit = 0; //reinicializamos la profit temporal
+    }
+
+    //Reportamos numero ideal
+    report(bestSold);
+
+	</script>
+</body>
+</html>

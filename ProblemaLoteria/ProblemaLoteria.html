@@ -1,0 +1,54 @@
+<!--Seung Hoon Lee - A01021720
+    Problema Loteria -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejercicio 1 Caminata Aleatoria</title>
+  <meta charset="utf-8">
+  <script src="./assert.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assert.css">
+</head>
+<body> 
+    <script type="text/javascript">
+    var successNumStatic = 0; //El numero de success que vamos a tener lo inicializamos
+    var failureNumStatic = 0; //Igual que arriba pero numero de fails (Si es que lo necesitamos)
+    var successNumRan = 0; //El numero de success que vamos a tener lo inicializamos
+    var failureNumRan = 0; //Igual que arriba pero numero de fails (Si es que lo necesitamos)
+    var luckyNum = 777;
+    
+    for (j = 0; j < 5000; j++) {
+        for (i = 0; i < 50000; i++) { //Iteramos 50000 veces
+        var lotteryNum = Math.floor((Math.random()* 50000) + 1); //Chance de poder ganar la loteria
+        var randomLotteryNum = Math.floor((Math.random()* 50000) +1); 
+
+        if (luckyNum === lotteryNum) {
+            successNumStatic += 1;
+        } else {
+            failureNumStatic += 1;
+        }
+
+        if (randomLotteryNum === lotteryNum) {
+            successNumRan += 1;
+        } else {
+            failureNumRan += 1;
+        }
+    }
+    }
+
+    //Sacamos la probabilidad
+    var probabilityStatic = (successNumStatic/(5000*50000));
+    var probabilityRan = (successNumRan/(5000*50000));
+
+    //Reportamos numero de success y probabilidad
+    report("Number of Times succeeded with the same ticket:")
+    report(successNumStatic);
+    report("Probability of succeeded times with the same ticket:")
+    report(probabilityStatic);
+    report("Number of Times succeeded with random ticket:")
+    report(successNumRan);
+    report("Probability of succeeded times with random ticket:")
+    report(probabilityRan);
+    </script>
+</body>
+</html>

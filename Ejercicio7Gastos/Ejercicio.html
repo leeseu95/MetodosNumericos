@@ -1,0 +1,109 @@
+<!--Seung Hoon Lee - A01021720
+    Ejercicio 5 Tarjeta -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejercicio 5 Tarjeta</title>
+  <meta charset="utf-8">
+  <script src="./assert.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assert.css">
+</head>
+<body> 
+    <script type="text/javascript">
+    var profitSales = 0;
+    var creditApproved = 0;
+    var numPeopleAccepted = 0;
+    var temp = [];
+    var randomNumCall;
+    var randomGender;
+    var randomSale;
+    var randomCredit;
+
+    for (i = 0; i < 5000; i++) { //Iteramos 5000 veces
+        randomNumCall = Math.random(); //Caso si contesta la llamada
+        if (randomNumCall < 0.30) {
+            randomGender = Math.random();
+
+            if(randomGender >= 0 && randomGender < 0.80) { //Caso si es mujer
+                randomSale = Math.random();
+
+                if (randomSale >= 0 && randomSale < 0.15) { //Caso si es mujer + compra la tarjeta
+                    randomCredit = Math.random();
+
+                    if (randomCredit >= 0 && randomCredit < 0.60) { //Caso si se vende 5000 a mujer
+                        profitSales += 200;
+                        creditApproved += 5000;
+                        numPeopleAccepted += 1;
+                        temp.push(200);
+                    }
+                    if (randomCredit >= 0.60 && randomCredit < 0.90) { //Caso si se vende 10000 a mujer
+                        profitSales += 400;
+                        creditApproved += 10000;
+                        numPeopleAccepted += 1;
+                        temp.push(400);
+                    }
+                    if (randomCredit >= 0.90 && randomCredit < 1.00) { //Caso si se vende 15000 a mujer
+                        profitSales += 600;
+                        creditApproved += 15000;
+                        numPeopleAccepted += 1;
+                        temp.push(600);
+                    }
+                }
+            }
+
+            if(randomGender >= 0.80 && randomGender < 1.00) { //Caso si es hombre
+                randomSale = Math.random();
+
+                if (randomSale >= 0 && randomSale <= 0.25) { //Caso de que el hombre si se venda
+                    randomCredit = Math.random();
+
+                    if (randomCredit >= 0 && randomCredit < 0.10) { //Caso si se vende a hombre 5000
+                        profitSales += 200;
+                        creditApproved += 5000;
+                        numPeopleAccepted += 1;
+                        temp.push(200);
+                    }
+                    if (randomCredit >= 0.10 && randomCredit < 0.50) { //Caso si se vende a hombre 10000
+                        profitSales += 400;
+                        creditApproved += 10000;
+                        numPeopleAccepted += 1;
+                        temp.push(400);
+                    }
+                    if (randomCredit >= 0.50 && randomCredit < 0.80) { //Caso si se vende a hombre 15000
+                        profitSales += 600;
+                        creditApproved += 15000;
+                        numPeopleAccepted += 1;
+                        temp.push(600);
+                    }
+                    if (randomCredit >= 0.80 && randomCredit < 1.00) { //CAso si se vende a hombre 20000
+                        profitSales += 800;
+                        creditApproved += 20000;
+                        numPeopleAccepted += 1;
+                        temp.push(800);
+                    }
+                }
+            }
+
+        }
+    }
+
+    var averageProfit = (profitSales/5000);
+    var summation = 0;
+    var standardDeviation;
+    for(i = 0; i < temp.length; i++) {
+        summation += Math.pow((temp[i] - averageProfit),2); 
+    }
+    standardDeviation = Math.sqrt(summation / temp.length);
+    //Reportamos numero ideal
+    report("Cantidad que nuestro caller gano:");
+    report(profitSales);
+    report("Cantidad de credito aprovado:");
+    report(creditApproved);
+    report("Cantidad de gente que acepto la venta de tarjeta:");
+    report(numPeopleAccepted);
+    report("Desviacion Estandar:");
+    report(standardDeviation);
+	</script>
+</body>
+</html>

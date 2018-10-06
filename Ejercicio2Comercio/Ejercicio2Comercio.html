@@ -1,0 +1,42 @@
+<!--Seung Hoon Lee - A01021720
+    Ejercicio 2 Comercio -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejercicio 2 Comercio</title>
+  <meta charset="utf-8">
+  <script src="./assert.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assert.css">
+</head>
+<body> 
+	<script type="text/javascript">
+    var clientNum = 0; //El numero de success que vamos a tener lo inicializamos
+    var storeNum = 0; //Igual que arriba pero numero de fails (Si es que lo necesitamos)
+    for (i = 0; i < 5000; i++) { //Iteramos 5000 veces
+        var randomNum = Math.random();
+
+        if (randomNum >= 0.20){ //Si random es mayor o igual a 0.20, el cliente paga menos
+            clientNum += 1;
+        } else {
+            storeNum += 1; //Si no, entonces la tienda gana mas $
+        }
+    }
+
+    //Sacamos la probabilidad
+    var probabilityClient = (clientNum/5000); //Sacamos las probabilidades
+    var probabilityStore = (storeNum/5000);
+
+    //Reportamos numero de success y probabilidad
+    report("Number of Times for client:")
+    report(clientNum);
+    report("Number of Times for store:")
+    report(storeNum);
+    report("Probability of client paying less:")
+    report(probabilityClient);
+    report("Probability of store getting mroe:")
+    report(probabilityStore)
+
+	</script>
+</body>
+</html>

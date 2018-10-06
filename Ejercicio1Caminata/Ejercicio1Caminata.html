@@ -1,0 +1,57 @@
+<!--Seung Hoon Lee - A01021720
+    Ejercicio 1 Caminata Aleatoria -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejercicio 1 Caminata Aleatoria</title>
+  <meta charset="utf-8">
+  <script src="./assert.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assert.css">
+</head>
+<body> 
+	<script type="text/javascript">
+    var successNum = 0; //El numero de success que vamos a tener lo inicializamos
+    var failureNum = 0; //Igual que arriba pero numero de fails (Si es que lo necesitamos)
+    for (i = 0; i < 5000; i++) { //Iteramos 5000 veces
+        var xAxis = 0; //Inicializamos despues de cada iter, nuestra posicion de x y y
+        var yAxis = 0;
+
+        for (j = 0; j < 10; j++){ //Iteramos 10 movimientos
+            var movement = Math.floor(Math.random() * 4 + 1); //Random entre 1-4
+            //Si los movimientos es cualquiera de 1 entre 4 nos movemos arriba/derecha/izq/abajo
+            if (movement === 1) { 
+                xAxis += 1;
+            }
+            if (movement === 2) {
+                xAxis -= 1;
+            }
+            if (movement === 3) {
+                yAxis += 1;
+            }
+            if (movement ===4) {
+                yAxis -= 1;
+            }          
+        }
+        var distance = Math.sqrt(Math.pow(xAxis, 2) + Math.pow(yAxis, 2)); //Sacamos la distancia con la equacion de sqrt(x² + y²)
+        
+        //Si estamos a menos de 2 cuadras, lo consideramos un success, sino un failure
+        if (distance <= 2) {
+            successNum += 1;
+        }
+        else {
+            failureNum += 1;
+        }
+    }
+
+    //Sacamos la probabilidad
+    var probability = (successNum/5000);
+
+    //Reportamos numero de success y probabilidad
+    report("Number of Times succeeded:")
+    report(successNum);
+    report("Probability of succeeded times:")
+    report(probability);
+	</script>
+</body>
+</html>
